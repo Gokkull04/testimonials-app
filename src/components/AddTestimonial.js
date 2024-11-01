@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function AddTestimonial({ addTestimonial }) {
   const [formData, setFormData] = useState({
@@ -23,6 +23,11 @@ function AddTestimonial({ addTestimonial }) {
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      {/* Back button positioned in the left corner */}
+      <Link to="/" className="text-purple-300 mb-4 absolute left-6 top-20">
+        &lt; Back to Home
+      </Link>
+
       <div className="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-md text-purple-400">
         <h2 className="text-2xl font-bold mb-6 text-purple-300">
           Add a Testimonial

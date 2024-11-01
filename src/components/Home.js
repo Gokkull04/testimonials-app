@@ -21,7 +21,7 @@ function Home({ testimonials }) {
                   <br></br>
           <p>
             Skilled in developing robust applications and secure smart
-            contracts,<br></br> I’m passionate about using technology to deliver
+            contracts,<br></br> Passionate about using technology to deliver
             high-quality client solutions.
           </p>
         </div>
