@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { db } from "../firebase"; // Import the db from firebase.js
+import { collection, addDoc } from "firebase/firestore"; // Import Firestore methods
 
-function AddTestimonial({ addTestimonial }) {
+function AddTestimonial() {
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -15,19 +17,23 @@ function AddTestimonial({ addTestimonial }) {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addTestimonial(formData);
-    navigate("/");
+
+    try {
+      // Add a new document with a generated ID
+      await addDoc(collection(db, "testimonials"), formData);
+      navigate("/"); // Navigate back to home page
+    } catch (error) {
+      console.error("Error adding testimonial: ", error);
+    }
   };
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-      {/* Back button positioned in the left corner */}
       <Link to="/" className="text-purple-300 mb-4 absolute left-6 top-20">
         &lt; Back to Home
       </Link>
-
       <div className="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-md text-purple-400">
         <h2 className="text-2xl font-bold mb-6 text-purple-300">
           Add a Testimonial
